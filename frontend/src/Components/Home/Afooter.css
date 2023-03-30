@@ -1,0 +1,102 @@
+
+.footerMainDiv {
+    /* top: 50%; */
+  position: fixed;
+  bottom: 0; 
+  padding-bottom: 100px;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #111827;
+  color: white;
+}
+
+.followusDiv {
+  padding: 2%;
+  width: 28%;
+  /* border: 1px solid black; */
+  justify-content: space-around;
+}
+
+.companyDiv {
+  padding: 2%;
+  width: 18%;
+  /* border: 1px solid black; */
+  justify-content: space-around;
+}
+
+.servicesDiv {
+  padding: 2%;
+  width: 18%;
+  /* border: 1px solid black; */
+  justify-content: space-around;
+}
+
+.helpfulDiv {
+  padding: 2%;
+  width: 18%;
+  /* border: 1px solid black; */
+  justify-content: space-around;
+}
+
+.legalDiv {
+  padding: 2%;
+  width: 18%;
+  /* border: 1px solid black; */
+  justify-content: space-around;
+}
+
+.nSymbolFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px;
+  width: 16%;
+  margin-left: 2em;
+}
+
+.nSymbolImageFooter {
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  background-color: #111827;
+}
+
+.nNameFooter {
+  font-family: "Poppins", sans-serif;
+  font-size: 150%;
+  font-weight: 700;
+  margin-left: 13px;
+}
+
+.footerName{
+    font-size: 2rem;
+}
+
+.companyNameDiv{
+    font-size: 2rem;
+}
+
+.servicesDiv h6
+{
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+.helpfulDiv h6
+{
+    font-size:  1.5rem;
+    font-weight: 100;
+}
+.legalDiv h6
+{
+    font-size:  1.5rem;
+    font-weight: 100;
+}
+.companyDiv h6
+{
+    font-size:  1.5rem;
+    font-weight: 100;
+}

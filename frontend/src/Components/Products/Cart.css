@@ -1,0 +1,242 @@
+.myCartMainDiv {
+  margin-top: 8em;
+  /* display: flex; */
+  align-items: center;
+  background-color: #f4f4f5;
+  height: 100vh;
+  overflow: auto;
+  width: 100vw;
+}
+
+.myCartNameDiv {
+  text-align: center;
+  font-size: 200%;
+  padding-bottom: 4px;
+  /* border: 1px solid blue; */
+  width: 100%;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+.myCartContentDiv {
+  margin-top: 2%;
+  display: flex;
+  text-align: center;
+  font-size: 200%;
+  width: 100%;
+}
+
+.myCartProductDiv {
+  width: 80%;
+  margin-right: 4px;
+}
+
+.myCartProductDescription {
+  display: flex;
+  border-radius: 1rem;
+  padding-top: 1%;
+  background-color: #fff;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  font-size: 120%;
+  padding-bottom: 1%;
+  margin-bottom: 3px;
+  margin-left: 0.3em;
+}
+
+.myCartProduct {
+  font-size: 55%;
+}
+
+.myCartProductProducts {
+  flex-basis: 47%;
+  padding-left: 6em;
+  font-size: 2rem;
+  display: inline-block;
+}
+
+.myCartProductQuantity {
+  flex-basis: 20%;
+  font-size: 2rem;
+  padding-left: 1.2em;
+  display: inline-block;
+}
+.myCartProductPrice {
+  flex-basis: 30%;
+  padding-left: 4em;
+  font-size: 2rem;
+  display: inline-block;
+}
+
+.myCartContentDisplay {
+  margin-top: 0px;
+  height: 140px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 1rem;
+  margin: 1.5em;
+  cursor: pointer;
+  font-size: 50%;
+  margin-bottom: 3px;
+}
+
+.myCartNameDiv {
+  text-align: center;
+  font-size: 200%;
+  padding-bottom: 4px;
+  background-color: #fff;
+}
+
+.myCartPhotoDiv {
+  display: inline-block;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 15px;
+  object-fit: contain;
+}
+
+.myCartImageDiv {
+  width: 100%;
+  height: 100%;
+}
+
+.myCartProductDiv {
+  height: 100%;
+  flex: 1;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.myCartPriceDiv {
+  height: fit-content;
+  flex: 1;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 6%;
+}
+.myCartStatusDiv {
+  display: flex;
+  height: fit-content;
+  font-size: 1.8rem;
+  flex: 1;
+  text-align: center;
+}
+
+.quantityDiv {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 24%;
+  font-size: 1.8rem;
+}
+
+.quantitynumber {
+  font-size: 1.7rem;
+}
+
+.quantityPlus {
+  width: 120%;
+  margin-top: 0.4em;
+  border-right: 0px;
+}
+
+.quantityminus {
+  border-left: 0px;
+  margin-top: 0.5em;
+
+  width: 120%;
+}
+
+.myCartSummaryDiv {
+  width: 30%;
+  height: 30rem;
+  background-color: #fff;
+  margin: 2em;
+  padding: 2em;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 1rem;
+}
+
+.myCartSummaryName {
+  text-align: center;
+  font-size: 2.5rem;
+  background-color: #fff;
+  padding-left: 6px;
+  font-weight: bold;
+}
+
+.myCartSummaryDetails {
+  background-color: #fff;
+  margin-top: 1.5px;
+  text-align: left;
+  padding-left: 6px;
+  padding-top: 8px;
+  padding-bottom: 6px;
+  font-size: 1.5rem;
+}
+.myCartSummaryTotal {
+  background-color: #fff;
+  margin-top: 1.5px;
+  text-align: left;
+  padding-left: 6px;
+  padding-top: 20px;
+  padding-bottom: 6px;
+}
+
+.myCartSummaryDetails p {
+  /* padding: 10px; */
+  font-size: 2rem;
+}
+.myCartSummaryDetails h6 {
+  font-size: 2rem;
+}
+.myCartSummaryDetails h6:hover {
+  color: blue;
+  cursor: pointer;
+}
+.myCartSummaryTotal p {
+  font-size: 2rem;
+}
+.myCartCheckOut {
+  background-color: #008000;
+  margin-top: 3px;
+  font-size: 2rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+  text-align: center;
+  height: 4.5rem;
+  padding-top: 0.3em;
+  border-radius: 1rem;
+}
+
+.myCartCheckOut p {
+  font-size: 2rem;
+}
+
+.moneySpan {
+  margin-left: 30%;
+  font-size: 2rem;
+}
+.moneySpanTotal {
+  margin-left: 32%;
+  font-size: 2rem;
+}
+
+.payment-box-labels {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}

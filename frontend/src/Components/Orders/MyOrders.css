@@ -1,0 +1,112 @@
+.myOrderMainDiv {
+  margin-top: 8em;
+  width: 100%;
+  display: flex;
+  background-color: #f4f4f5;
+}
+.myOrderDispalyDiv {
+  width: 74%;
+  height: 20%;
+  /* margin-left: 1.5%; */
+  padding: 1em;
+  /* margin: 1em; */
+  /* border: 1px solid purple; */
+  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
+}
+
+.myOrderContentDisplay {
+  margin-top: 10px;
+  height: 15rem;
+  width: 100%;
+  /* border: 1px solid red; */
+  border-radius: 1rem;
+  /* padding: 3px; */
+  background-color: #fff;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  cursor: pointer;
+}
+
+.myOrderContentDisplay:hover {
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; */
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.myOrderNameDiv {
+  text-align: center;
+  font-size: 4rem;
+  padding-bottom: 4px;
+  border-radius: 0.8rem;
+  /* border: 1px solid blue; */
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: #fff;
+}
+
+.myOrderPhotoDiv {
+  display: inline-block;
+  height: 100%;
+  /* border: 1px solid black; */
+  /* flex:1; */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 15px;
+  object-fit: contain;
+}
+
+.myOrderImageDiv {
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 100%;
+}
+
+.myOrderProductDiv {
+  height: 100%;
+  /* border: 1px solid black; */
+  flex: 2;
+  font-size: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.myOrderProductDiv p{
+    font-size: 2rem;
+    margin-top: 2.5em;
+}
+.myOrderPriceDiv {
+  font-size: 2rem;
+  height: fit-content;
+  flex: 1;
+  text-align: center;
+}
+
+.myOrderPriceDiv p{
+    font-size: 2rem;
+    margin-top: 2.5em;
+}
+.myOrderStatusDiv {
+/* margin-top: 5em; */
+  font-size: 2rem;
+  display: flex;
+  height: fit-content;
+  flex: 1;
+  text-align: center;
+}
+
+.myOrderStatusDiv p{
+    margin-top: 2.5em;
+    font-size: 2rem;
+    margin-left: 0.2em;
+}
+
+.circlefill {
+  margin-top: 6em;
+  margin-left: 20%;
+  color: "green";
+  font-size: "60%";
+}

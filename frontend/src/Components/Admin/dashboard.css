@@ -1,0 +1,126 @@
+.dashboradContainer{
+    height: 90vh;
+    overflow: scroll;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid black; */
+    border-radius: 1rem;
+}
+
+.dashboradContainer .dashboardHeading{
+    text-align: center;
+    /* margin-left: 2px; */
+    height: 5rem;
+    padding: 5px;
+    background: #fff;
+    margin-bottom: 15px;
+    width:100%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;}
+
+.dashboradContainer .dashboardHeading span{
+    font-family: "Poppins";
+    font-size: 3rem;
+    color: black;
+}
+
+.dashboradContainer .dashboardDetails{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+}
+
+.dashboardPOU{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width:250px;
+    height: 150px;
+    background: #fff;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 20px;
+    gap: 5px;
+}
+
+.pou1{
+    text-align: center;
+    width:90px;
+    height:90px;
+    padding: 3px;
+    border-radius: 20px;
+}
+
+.pou2{
+    width:120px;
+    height: 90px;
+}
+
+.pou2 p{
+    font-size: 1.5rem;
+    padding: 2px;
+    margin-bottom: -3px;
+}
+
+.dProducts{
+    background: #ffdddd;
+}
+
+.dOrders{
+    background: #ecddff;
+}
+
+.dUser{
+    background: #ddfffc;
+}
+
+.dashboardChat{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-items: center;
+    /* background: #aaaaaa; */
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.barGraphTags{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.barGraphTags .barGraphIndicators{
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.barGraphIndicators .indicator{
+    width:60px;
+    height: 20px;
+    margin: 10px;
+    background-color: aqua;
+    border-radius: 10px;
+}
+
+
+.bargraph{
+    background: #fffcfc;
+    border-radius: 10px;
+    width: 600px;
+    height: 400px;
+}

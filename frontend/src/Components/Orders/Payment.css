@@ -1,0 +1,87 @@
+.payment-main-container{
+  height: 100vh;
+  overflow: auto;
+  width: 100vw;
+  background-color: #f4f4f5;
+}
+
+.paymentContainer {
+    display: grid;
+    place-items: center;
+    background-color: #f4f4f5;
+    height: 65vh;
+    margin: 2vmax;
+
+  }
+  
+  .paymentForm {
+    background-color: #fff;
+    padding: 1.2em;
+    width: 22%;
+    height: 85%;
+    border-radius: 2em;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+  .paymentForm input {
+    width: 100%;
+  }
+  
+  .paymentForm > p {
+    font: 400 1.5vmax "Poppins";
+    color: rgba(0, 0, 0, 0.753);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+    /* padding: 1vmax 0; */
+    margin-left: 3em;
+    text-align: center;
+    width: 50%;
+    text-align: center;
+  }
+  
+  .paymentForm > div {
+    display: flex;
+    align-items: center;
+    margin: 2vmax 0;
+  }
+  
+  .paymentInput {
+    /* border: 1px solid black; */
+    /* padding: 1vmax 4vmax; */
+    /* padding-right: 1vmax; */
+    height: 5rem;
+    width: 100%;
+    box-sizing: border-box;
+    /* border: 1px solid rgba(0, 0, 0, 0.267); */
+    border-radius: 4px;
+    outline: none;
+  }
+  .paymentInput input {
+    height: 100%;
+    border: 1px solid gray;
+    border-radius: 2em;
+    padding-left: 2.4em;
+    font-size: 2rem;
+  }
+  .paymentForm > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623);
+  }
+  
+  .paymentFormBtn {
+    border: none;
+    background-color: #008000;
+    border-radius: 2em;
+    color: white;
+    font: 300 0.9vmax "Poppins";
+    width: 100%;
+    padding: 0.8vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    outline: none;
+  }
+  
+  .paymentFormBtn:hover {
+    background-color: #008000
+  }
+  

@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+.navMainDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 9%;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: #fff;
+}
+
+.nSymbol {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px;
+  width: 16%;
+}
+
+.nSymbolImage {
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.nName {
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.nProducts {
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.nProducts:hover {
+  color: rgb(158, 157, 157);
+  cursor: pointer;
+}
+
+.search-input {
+  padding: 1em;
+  font-size: 1.5rem;
+  border-radius: 10%;
+  border-left: 1em;
+  border: none;
+}
+
+.nosubmit {
+  display: flex;
+  width: 26rem;
+  height: 2rem;
+  margin-left: 10px;
+  margin-top: 0.1rem;
+  margin-bottom: 1px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.navLogin {
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Poppins", sans-serif;
+  /* background-color: #008000; */
+  background-clip: padding-box;
+  font-size: 1.1rem;
+  font-weight: 400;
+  justify-content: center;
+}
+.navLogin:hover {
+  /* background-color: #02c002; */
+  color: #fff;
+  border: 1px solid #d7d6d6;
+}
+
+.dropDownDiv {
+  text-align: left;
+  color: black;
+  font-size: 1.8rem;
+  background-color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+}
+
+.dropdown-content .dropDownDiv:hover {
+  /* background-color: #ddd; */
+  display: block;
+}
+
+.navLogin:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content-dis {
+  border-radius: 6px;
+  margin-top: 2rem;
+  display: none;
+  position: absolute;
+  top: 3.7rem;
+  background-color: #fff;
+  font-weight: 200;
+  width: 20rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  z-index: 1;
+}
+
+.navSignup {
+    padding-top: 12%;
+    padding-bottom: 12%;
+  align-items: center;
+  background-color: #008000;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Poppins", sans-serif;
+  background-clip: padding-box;
+  font-size: 1rem;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 0rem;
+  position: relative;
+  text-decoration: none;
+}
+
+.dropDownDiv:hover {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+
+
+.navLogin:hover .dropdown-content-dis {
+  display: block;
+}

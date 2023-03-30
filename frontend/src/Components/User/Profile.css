@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.poppins {
+  font-family: "poppins";
+}
+
+.main-container {
+  margin-top: 8em;
+  background-color: #f4f4f5;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.profileMainDiv {
+    /* border: 1px solid black; */
+  background-color: #f4f4f5;
+  display: flex;
+  /* margin-left: 10%; */
+  padding: 1em;
+  /* margin-right: 10%; */
+  height: 100%;
+  flex-basis: 100%;
+  /* flex-grow: 40%; */
+}
+
+.contentDiv {
+    /* border: 1px solid red; */
+  background-color: #f4f4f5;
+  padding: 1em;
+  height: 100%;
+  width: 25%;
+}
+
+.contentPhoto {
+  background-color: #fff;
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  height: 20%;
+  width: 100%;
+  /* border: 1px solid blue; */
+  align-items: center;
+  padding: 5%;
+  border-radius: 1rem;
+  /* padding-left: 30%; */
+}
+
+.photoDiv {
+  display: inline-block;
+  width: 11rem;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #008000;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.photoImageDiv {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.contentDetails {
+  background-color: #fff;
+  margin-top: 1em;
+  height: 20%;
+  width: 100%;
+  /* border: 1px solid green; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  border-radius: 1rem;
+}
+
+.contentDisplay {
+  height: 20%;
+  width: 100%;
+  /* border: 1px solid purple; */
+  /* margin-left: 1.5%; */
+  /* padding: 3px; */
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.myordersDiv {
+  display: flex;
+  padding: 3%;
+  font-size: 1.3rem;
+}
+.paymentsDiv {
+  display: flex;
+  padding: 3%;
+  font-size: 1.3rem;
+}
+.mystuffDiv {
+  display: flex;
+  padding: 3%;
+  font-size: 1.3rem;
+}
+.logoutDiv {
+  display: flex;
+  padding: 3%;
+  font-size: 1.3rem;
+}
+
+.showButton {
+  display: block;
+}
+
+.noShowButton {
+  display: none;
+}
+
+.nameDiv {
+  height: 45px;
+  margin-top: 25px;
+  font-size: 2rem;
+
+  /* border:2px solid red */
+}
+.inputNameDiv {
+  height: 100%;
+  width: 40%;
+  border-radius: 50px;
+  font-size: 1.6rem;
+  border: 0.5px solid rgb(198, 198, 198);
+  padding: 2%;
+  /* color: rgb(190, 190, 190); */
+}
+
+.perButtonDiv {
+  font-size: 1.6rem;
+  background-color: #008000;
+  color: #fff;
+  width: 10rem;
+  height: 4rem;
+  border: 1px solid #008000;
+  border-radius: 10px;
+}
+
+.perButtonDiv:hover {
+  background-color: #02c002;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  border: 1px solid #02c002;
+  color: white;
+}
+
+.perButtonDiv:active {
+  background-color: #02c002;
+  color: white;
+}
+
+.perButtonDivPhone {
+  margin-top: 3.5%;
+}
+
+::placeholder {
+  color: rgb(190, 190, 190);
+}
+
+.myOrderDivHover {
+  cursor: pointer;
+  margin-left: 10%;
+  font-size: 1.8rem;
+  color: #2f2504;
+}
+
+.myOrderDivHover:hover {
+  color: blue;
+}
