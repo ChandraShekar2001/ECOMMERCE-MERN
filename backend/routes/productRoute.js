@@ -80,6 +80,117 @@ module.exports = router;
 
 /**
  * @swagger
+ * components:
+ *  schemas:
+ *    ShippingInfo:
+ *      type: object
+ *      required:
+ *        - address
+ *        - city
+ *        - state
+ *        - country
+ *        - pinCode
+ *        - phoneNo
+ *      properties:
+ *        address:
+ *          type: string
+ *          description: the delivery address
+ *          example: rve
+ *        city:
+ *          type: string
+ *          description: the city name in the delivery address
+ *          example: sv
+ *        state:
+ *          type: string
+ *          description: the state to be delivered to
+ *          example: 7
+ *        country:
+ *          type: string
+ *          description: country name for delivery
+ *          example: AT
+ *        pinCode:
+ *          type: integer
+ *          description: pin code for delivery
+ *          example: 9002
+ *        phoneNo:
+ *          type: integer
+ *          description: phone number for delivery
+ *          example: 1234567890
+ */
+
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     productSchema:
+ *       type: object
+ *       required:
+ *         - name
+ *         - description
+ *         - price
+ *         - category
+ *         - Stock
+ *         - user
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: Name of the product
+ *         description:
+ *           type: string
+ *           description: Description of the product
+ *         price:
+ *           type: number
+ *           description: Price of the product
+ *         ratings:
+ *           type: number
+ *           description: Product ratings
+ *         category:
+ *           type: string
+ *           description: Category of the product
+ *         Stock:
+ *           type: number
+ *           description: Product stock
+ *         numOfReviews:
+ *           type: number
+ *           description: Number of reviews for the product
+ *         reviews:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/review'
+ *         user:
+ *           type: string
+ *           description: ID of the user who added the product
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           description: Date when the product was created
+ * 
+ *     review:
+ *       type: object
+ *       required:
+ *         - user
+ *         - name
+ *         - rating
+ *         - comment
+ *       properties:
+ *         user:
+ *           type: string
+ *           description: ID of the user who posted the review
+ *         name:
+ *           type: string
+ *           description: Name of the user who posted the review
+ *         rating:
+ *           type: number
+ *           description: Rating given by the user
+ *         comment:
+ *           type: string
+ *           description: Comment posted by the user
+ */
+
+
+/**
+ * @swagger
  * tags:
  *  name: Product Routes
  *  description: Product routes managing API's
@@ -88,7 +199,7 @@ module.exports = router;
 //CREATE NEW PRODUCT ADMIN API
 /**
  * @swagger 
- * /admin/product/new:
+ * /api/v1/admin/product/new:
  *   post:
  *     summary: Create a new product
  *     tags: [Product Routes]
@@ -139,7 +250,7 @@ module.exports = router;
 //GET ALL PRODUCTS API
 /**
  * @swagger
- * /products:
+ * /api/v1/products:
  *   get:
  *     summary: Get all products
  *     tags: [Product Routes]
@@ -170,7 +281,7 @@ module.exports = router;
 //GET ALL PRODUCTS ADMIN API
 /**
  * @swagger
- * /admin/products:
+ * /api/v1/admin/products:
  *   get:
  *     summary: Get all products (Admin)
  *     tags: [Product Routes]
@@ -199,7 +310,7 @@ module.exports = router;
 //GET ALL PRODUCT DETAILS
 /**
  * @swagger 
- * /product/{id}:
+ * /api/v1/product/{id}:
  *   get:
  *     summary: Get product details
  *     tags: [Product Routes]
@@ -259,7 +370,7 @@ module.exports = router;
 //UPDATE PRODUCT ADMIN API
 /**
  * @swagger 
- * /admin/product/{id}:
+ * /api/v1/admin/product/{id}:
  *   put:
  *     summary: Update a product by ID
  *     tags: [Product Routes]
@@ -330,7 +441,7 @@ module.exports = router;
 //DELETE PRODUCT ADMIN API
 /**
  * @swagger 
- * /admin/product/{id}:
+ * /api/v1/admin/product/{id}:
  *   delete:
  *     summary: Delete a product by ID
  *     tags: [Product Routes]
@@ -370,7 +481,7 @@ module.exports = router;
 //CREATE & UPDATE REVIEW API
 /**
  * @swagger 
- * /review:
+ * /api/v1/review:
  *   put:
  *     summary: Create New Review or Update the review
  *     tags: [Product Routes]
@@ -424,7 +535,7 @@ module.exports = router;
 //GET ALL REVIEWS API
 /**
  * @swagger
- * /reviews:
+ * /api/v1/reviews:
  *   get:
  *     summary: Get all reviews of a product
  *     tags: [Product Routes]
@@ -460,7 +571,7 @@ module.exports = router;
 //DELETE REVIEW API
 /**
  * @swagger
- * /reviews:
+ * /api/v1/reviews:
  *   delete:
  *     summary: Delete a review
  *     tags: [Product Routes]

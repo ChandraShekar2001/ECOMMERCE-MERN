@@ -4,11 +4,11 @@ const app = express();
 const cors = require("cors");
 app.use(cors())
 
- mongoose.set('strictQuery', false)
+mongoose.set('strictQuery', false)
 
 const connectDatabase = () => {
   mongoose
-    .connect('mongodb://localhost:27017/Ecommerce', {
+    .connect('mongodb://0.0.0.0:27017/Ecommerce', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })

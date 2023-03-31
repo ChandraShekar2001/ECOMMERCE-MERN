@@ -33,6 +33,264 @@ module.exports = router;
 
 /**
  * @swagger
+ * components:
+ *  schemas:
+ *    shippingInfo:
+ *      type: object
+ *      required:
+ *        - address
+ *        - city
+ *        - state
+ *        - country
+ *        - pinCode
+ *        - phoneNo
+ *      properties:
+ *        address:
+ *          type: string
+ *          description: the delivery address
+ *          example: rve
+ *        city:
+ *          type: string
+ *          description: the city name in the delivery address
+ *          example: sv
+ *        state:
+ *          type: string
+ *          description: the state to be delivered to
+ *          example: 7
+ *        country:
+ *          type: string
+ *          description: country name for delivery
+ *          example: AT
+ *        pinCode:
+ *          type: integer
+ *          description: pin code for delivery
+ *          example: 9002
+ *        phoneNo:
+ *          type: integer
+ *          description: phone number for delivery
+ *          example: 1234567890
+ */
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    OrderItems:
+ *      type: array
+ *      items:
+ *        type: object
+ *        required:
+ *          - name
+ *          - price
+ *          - quantity
+ *          - id
+ *        properties:
+ *          name:
+ *            type: string
+ *            description: name of the item ordered
+ *            example: apple watch
+ *          price:
+ *            type: number
+ *            format: float
+ *            description: price of the item ordered
+ *            example: 3000
+ *          quantity:
+ *            type: integer
+ *            description: quantity of he item ordered
+ *            example: 2
+ *          id:
+ *            type: string
+ *            description: id of the item ordered in the database
+ *            example: 6333e753876de9e542e4c5f6
+ */
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    PaymentInfo:
+ *      type: object
+ *      required:
+ *        - id
+ *        - status
+ *      properties:
+ *        id:
+ *          type: string
+ *          description: id of the payment
+ *          example: samplePayment
+ *        status:
+ *          type: string
+ *          description: status of the payment
+ *          example: succeded
+ */
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    orderSchema:
+ *       type: object
+ *       required:
+ *        - user
+ *        - paidAt
+ *        - itemsPrice
+ *        - taxPrice
+ *        - shippingPrice
+ *        - totalPrice
+ *        - orderStatus
+ *       properties:
+ *         shippingInfo:
+ *           $ref: '#/components/schemas/shippingInfo'
+ *         orderItems:
+ *           $ref: '#/components/schemas/OrderItems'
+ *         user:
+ *           type: string
+ *           description: id of the user who ordered
+ *           example: 6333e62bdb05cc1a2fec7f56
+ *         paymentInfo:
+ *           $ref: '#/components/schemas/PaymentInfo'
+ *         paidAt:
+ *           type: string
+ *           format: date-time
+ *           description: the date at which payment was made
+ *           example: 2022-10-07T19:27:03.855+00:00
+ *         itemsPrice:
+ *           type: number
+ *           format: float
+ *           description: the cart subtotal without tax and shipping
+ *           example: 9000
+ *         taxPrice:
+ *           type: number
+ *           format: float
+ *           description: the tax applicable to the cart subtotal
+ *           example: 1620
+ *         shippingPrice:
+ *           type: number
+ *           format: float
+ *           description: the shipping price applicable to the delivery location
+ *           example: 0
+ *         totalPrice:
+ *           type: number
+ *           format: float
+ *           description: the total value of the order
+ *           example: 10620
+ *         orderStatus:
+ *           type: string
+ *           description: the delivery status of the order
+ *           example: Shipped
+ *         deliveredAt:
+ *           type: string
+ *           format: date-time
+ *           description: the delivery date of the order
+ *         createdAt:
+ *           type: string
+ *           format: float
+ *           description: the date at which the order was placed
+ *           example: 2022-10-07T19:27:03.862+00:00
+ *
+ *
+ *
+ *    OrderItem:
+ *       type: object
+ *       required:
+ *        - name
+ *        - price
+ *        - quantity
+ *        - id
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: name of the item ordered
+ *           example: apple watch
+ *         price:
+ *           type: number
+ *           format: float
+ *           description: price of the item ordered
+ *           example: 3000
+ *         quantity:
+ *           type: integer
+ *           description: quantity of he item ordered
+ *           example: 2
+ *         id:
+ *           type: string
+ *           description: id of the item ordered in the database
+ *           example: 6333e753876de9e542e4c5f6
+ *
+ */
+
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     productSchema:
+ *       type: object
+ *       required:
+ *         - name
+ *         - description
+ *         - price
+ *         - category
+ *         - Stock
+ *         - user
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: Name of the product
+ *         description:
+ *           type: string
+ *           description: Description of the product
+ *         price:
+ *           type: number
+ *           description: Price of the product
+ *         ratings:
+ *           type: number
+ *           description: Product ratings
+ *         category:
+ *           type: string
+ *           description: Category of the product
+ *         Stock:
+ *           type: number
+ *           description: Product stock
+ *         numOfReviews:
+ *           type: number
+ *           description: Number of reviews for the product
+ *         reviews:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/review'
+ *         user:
+ *           type: string
+ *           description: ID of the user who added the product
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           description: Date when the product was created
+ *
+ *     review:
+ *       type: object
+ *       required:
+ *         - user
+ *         - name
+ *         - rating
+ *         - comment
+ *       properties:
+ *         user:
+ *           type: string
+ *           description: ID of the user who posted the review
+ *         name:
+ *           type: string
+ *           description: Name of the user who posted the review
+ *         rating:
+ *           type: number
+ *           description: Rating given by the user
+ *         comment:
+ *           type: string
+ *           description: Comment posted by the user
+ */
+
+
+/**
+ * @swagger
  * tags:
  *  name: Order Routes
  *  description: Order routes managing API's
@@ -40,8 +298,8 @@ module.exports = router;
 
 //CREATE NEW ORDER API
 /**
- * @swagger 
- * /order/new:
+ * @swagger
+ * /api/v1/order/new:
  *   post:
  *     summary: Create a new order
  *     tags: [Order Routes]
@@ -55,7 +313,7 @@ module.exports = router;
  *             type: object
  *             properties:
  *               shippingInfo:
- *                 $ref: '#/components/schemas/ShippingInfo'
+ *                 $ref: '#/components/schemas/shippingInfo'
  *               orderItems:
  *                 $ref: '#/components/schemas/OrderItems'
  *               paymentInfo:
@@ -99,7 +357,7 @@ module.exports = router;
 //FIND ORDER BY ID API
 /**
  * @swagger
- * /order/{id}:
+ * /api/v1/order/{id}:
  *   get:
  *     summary: Get a single order by ID
  *     tags: [Order Routes]
@@ -112,6 +370,7 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
+ *           example: 6340fcde0d157ec75c2bfca9
  *     responses:
  *       200:
  *         description: The order was successfully retrieved
@@ -137,7 +396,7 @@ module.exports = router;
 //SHOW ORDERS OF CURRENT USER API
 /**
  * @swagger
- * /orders/me:
+ * /api/v1/orders/me:
  *   get:
  *     summary: Get logged in user orders
  *     tags: [Order Routes]
@@ -164,7 +423,7 @@ module.exports = router;
 //SHOW ALL ORDERS TO ADMIN API
 /**
  * @swagger
- * /admin/orders:
+ * /api/v1/admin/orders:
  *   get:
  *     summary: Get all orders
  *     tags: [Order Routes]
@@ -215,8 +474,8 @@ module.exports = router;
 
 //UPDATE ORDER STATUS ADMIN API
 /**
- * @swagger 
- * /admin/order/{id}:
+ * @swagger
+ * /api/v1/admin/order/{id}:
  *   put:
  *     summary: Update Order Status
  *     tags: [Order Routes]
@@ -227,6 +486,7 @@ module.exports = router;
  *         name: id
  *         schema:
  *           type: string
+ *           example: 6340fcde0d157ec75c2bfca9
  *         required: true
  *         description: The ID of the order to update
  *     requestBody:
@@ -266,7 +526,7 @@ module.exports = router;
 //DELETE ORDER ADMIN API
 /**
  * @swagger
- * /admin/order/{id}:
+ * /api/v1/admin/order/{id}:
  *   delete:
  *     summary: Delete an order by ID
  *     tags: [Order Routes]

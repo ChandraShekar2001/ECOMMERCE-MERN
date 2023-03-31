@@ -18,7 +18,7 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../public/avatars/') 
+    cb(null, '../public/avatars/')
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = req.body.user_name + '-' + Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -61,6 +61,59 @@ module.exports = router;
 
 // Swagger
 
+
+/**
+* @swagger
+* components:
+*   schemas:
+*     User:
+*       type: object
+*       required:
+*         - name
+*         - email
+*         - password
+*       properties:
+*         name:
+*           type: string
+*           maxLength: 30
+*           minLength: 4
+*           description: User name
+*         email:
+*           type: string
+*           format: email
+*           description: User email address
+*         password:
+*           type: string
+*           minLength: 8
+*           description: User password
+*         avatar:
+*           type: object
+*           properties:
+*             public_id:
+*               type: string
+*               description: Public ID of the user avatar
+*             url:
+*               type: string
+*               description: URL of the user avatar
+*           description: User avatar
+*         role:
+*           type: string
+*           description: User role
+*         createdAt:
+*           type: string
+*           format: date-time
+*           description: Date and time when the user was created
+*         resetPasswordToken:
+*           type: string
+*           description: Reset password token for the user
+*         resetPasswordExpire:
+*           type: string
+*           format: date-time
+*           description: Expiration time for the reset password token
+*/
+
+
+
 /**
  * @swagger
  * tags:
@@ -70,7 +123,7 @@ module.exports = router;
 
 //USER REGISTER API
 /**
- * @swagger 
+ * @swagger
  * /register:
  *   post:
  *     summary: Register a new user
@@ -117,7 +170,7 @@ module.exports = router;
 //USER LOGIN API
 /**
  * @swagger
- * /login:
+ * /api/v1/login:
  *   post:
  *     summary: Login user
  *     tags: [User Routes]
@@ -135,9 +188,7 @@ module.exports = router;
  *               password:
  *                 type: string
  *                 description: User password
- *             required:
- *               - email
- *               - password
+ *
  *     responses:
  *       200:
  *         description: User successfully logged in
@@ -160,8 +211,8 @@ module.exports = router;
 
 //USER LOGOUT API
 /**
- * @swagger 
- * /logout:
+ * @swagger
+ * /api/v1/logout:
  *   get:
  *     summary: Log out the user
  *     tags: [User Routes]
@@ -188,8 +239,8 @@ module.exports = router;
 
 //FORGOT PASSWORD API
 /**
- * @swagger 
- * /password/forgot:
+ * @swagger
+ * /api/v1/password/forgot:
  *   post:
  *     summary: Send password reset email
  *     tags: [User Routes]
@@ -227,8 +278,8 @@ module.exports = router;
 
 //RESET PASSWORD API
 /**
- * @swagger 
- * /password/reset/{token}:
+ * @swagger
+ * /api/v1/password/reset/{token}:
  *   put:
  *     summary: Reset password
  *     tags: [Authentication Routes]
@@ -277,8 +328,8 @@ module.exports = router;
 
 //GET USER DETAILS API
 /**
- * @swagger 
- * /me:
+ * @swagger
+ * /api/v1/me:
  *   get:
  *     summary: Get user details
  *     tags: [User Routes]
@@ -304,8 +355,8 @@ module.exports = router;
 
 //UPDATE USER PASSWORD API
 /**
- * @swagger 
- * /password/update:
+ * @swagger
+ * /api/v1/password/update:
  *   put:
  *     summary: Update user password
  *     tags: [User Routes]
@@ -350,8 +401,8 @@ module.exports = router;
 
 //UPDATE USER PROFILE API
 /**
- * @swagger 
- * /me/update:
+ * @swagger
+ * /api/v1/me/update:
  *   put:
  *     summary: Update user profile
  *     tags: [User Routes]
@@ -397,8 +448,8 @@ module.exports = router;
 
 //GET ALL USER DATA - ADMIN API
 /**
- * @swagger 
- * /admin/users:
+ * @swagger
+ * /api/v1/admin/users:
  *   get:
  *     summary: Get all users (admin)
  *     tags: [User Routes]
@@ -427,8 +478,8 @@ module.exports = router;
 
 //GET SINGLE USER DETAILS ADMIN API
 /**
- * @swagger 
- * /admin/user/{id}:
+ * @swagger
+ * /api/v1/admin/user/{id}:
  *   get:
  *     summary: Get a single user by ID (admin)
  *     tags: [User Routes]
@@ -466,8 +517,8 @@ module.exports = router;
 
 //UPDATE USER ROLE ADMIN API
 /**
- * @swagger 
- * /admin/user/{id}:
+ * @swagger
+ * /api/v1/admin/user/{id}:
  *   put:
  *     summary: Update user role (admin)
  *     tags: [User Routes]
@@ -527,7 +578,7 @@ module.exports = router;
 //DELETE USER PROFILE ADMIN API
 /**
  * @swagger
- * /admin/user/{id}:
+ * /api/v1/admin/user/{id}:
  *   delete:
  *     summary: Delete user by ID
  *     tags: [User Routes]
