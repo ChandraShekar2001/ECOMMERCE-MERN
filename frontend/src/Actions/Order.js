@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../AxiosConfig";
 
 
 const config = {
@@ -13,7 +13,7 @@ export const createOrder = (order) => async (dispatch) => {
   // console.log(order);
   try {
     dispatch({ type: "createOrderRequest" });
-    const url = `http://localhost:4000/api/v1/order/new`;
+    const url = `/order/new`;
     const { data } = await axios.post(url, order, config);
     //  console.log(data);
     dispatch({
@@ -31,7 +31,7 @@ export const createOrder = (order) => async (dispatch) => {
 export const myOrders = () => async (dispatch) => {
   try {
     dispatch({ type: "myOrderRequest" });
-    const url = `http://localhost:4000/api/v1/orders/me`;
+    const url = `/orders/me`;
     const { data } = await axios.get(url, config);
 
     console.log(data.orders);
@@ -52,7 +52,7 @@ export const myOrders = () => async (dispatch) => {
 export const getAllOrders = () => async (dispatch) => {
   try {
     dispatch({ type: "allOrdersRequest" });
-    const url = `http://localhost:4000/api/v1/admin/orders`;
+    const url = `/admin/orders`;
     const { data } = await axios.get(url, config);
     dispatch({
       type: "allOrdersSuccess",
@@ -70,7 +70,7 @@ export const updateOrder = (id, status) => async (dispatch) => {
   console.log(status, id);
   try {
     dispatch({ type: "updateOrderRequest" });
-    const url = `http://localhost:4000/api/v1/admin/order/${id}`;
+    const url = `/order/${id}`;
     const { data } = await axios.put(url, {status}, {
       headers: {
         "Content-Type": "application/json",
@@ -94,7 +94,7 @@ export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: "deleteOrderRequest" });
     // console.log(id);
-    const url = `http://localhost:4000/api/v1/admin/order/${id}`;
+    const url = `/order/${id}`;
     const { data } = await axios.delete(url, config);
     // console.log(data);
     dispatch({
@@ -112,7 +112,7 @@ export const deleteOrder = (id) => async (dispatch) => {
 export const getOrderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: "getOrderRequest" });
-    const url = `http://localhost:4000/api/v1/order/${id}`;
+    const url = `/order/${id}`;
     const { data } = await axios.get(url, config);
     console.log(data);
     dispatch({

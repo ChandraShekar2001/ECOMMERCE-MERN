@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../AxiosConfig";
 
 export const productActions =
   (
@@ -13,9 +13,9 @@ export const productActions =
       dispatch({ type: "getAllProductsRequest" });
       let url;
       if (category)
-        url = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte] = ${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+        url = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte] = ${price[1]}&category=${category}&ratings[gte]=${ratings}`;
       else
-        url = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte] = ${price[1]}&ratings[gte]=${ratings}`;
+        url = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte] = ${price[1]}&ratings[gte]=${ratings}`;
       console.log(url);
       const { data } = await axios.get(url);
       console.log(data);
@@ -34,7 +34,7 @@ export const productActions =
 export const fetchSingleProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: "singleProductRequest" });
-    let url = `http://localhost:4000/api/v1/product/${id}`;
+    let url = `/product/${id}`;
     const { data } = await axios.get(url);
     console.log("data from single product");
     console.log(data);
@@ -53,7 +53,7 @@ export const fetchSingleProduct = (id) => async (dispatch) => {
 export const getAdminProduct = () => async (dispatch) => {
   try {
     dispatch({ type: "adminProductRequest" });
-    let url = "http://localhost:4000/api/v1/admin/products";
+    let url = "/admin/products";
     const { data } = await axios.get(url, {
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export const createProduct = (productData) => async (dispatch) => {
   try {
 
     dispatch({ type: "newProductRequest" });
-    let url = "http://localhost:4000/api/v1/admin/product/new";
+    let url = "/admin/product/new";
     const { data } = await axios.put(
       url,
       productData,
@@ -109,7 +109,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
   try {
     // console.log(id,productData);
     dispatch({ type: "updateProductRequest" });
-    let url = `http://localhost:4000/api/v1/admin/product/${id}`;
+    let url = `/admin/product/${id}`;
     const { data } = await axios.put(
       url,
 
@@ -140,7 +140,7 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     console.log(id);
     dispatch({ type: "deleteProductRequest" });
-    const url = `http://localhost:4000/api/v1/admin/product/${id}`;
+    const url = `/admin/product/${id}`;
     const { data } = await axios.delete(url, {
       headers: {
         "Content-Type": "application/json",
@@ -165,7 +165,7 @@ export const newReview = (reviewData) => async (dispatch) => {
   console.log(reviewData);
   try {
     dispatch({ type: "newReviewRequest" });
-    const url = `http://localhost:4000/api/v1/review`;
+    const url = `/review`;
     const { data } = await axios.put(
       url,
       {
@@ -196,7 +196,7 @@ export const newReview = (reviewData) => async (dispatch) => {
 export const getAllReviews = (id) => async (dispatch) => {
   try {
     dispatch({ type: "allReviewRequest" });
-    const url = `http://localhost:4000/api/v1/reviews?id=${id}`;
+    const url = `/reviews?id=${id}`;
     const { data } = await axios.get(url, {
       headers: {
         "Content-Type": "application/json",
@@ -220,7 +220,7 @@ export const getAllReviews = (id) => async (dispatch) => {
 export const deleteReview = (reviewId, productId) => async (dispatch) => {
   try {
     dispatch({ type: "deletReviewRequest" });
-    const url = `http://localhost:4000/api/v1/reviews?id=${reviewId}&productId=${productId}`;
+    const url = `/reviews?id=${reviewId}&productId=${productId}`;
     const { data } = await axios.delete(url, {
       headers: {
         "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../AxiosConfig";
 
 const config = {
   headers: {
@@ -15,7 +15,7 @@ export const loginUser = (formData) => async (dispatch) => {
       type: "LoginRequest",
     });
  
-    const url = "http://localhost:4000/api/v1/login";
+    const url = "/login";
     const response = await axios.post(url, formData, {
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const registerUser = (formData) => async (dispatch) => {
   try {
     console.log(formData);
     dispatch({ type: "signUpReqest" });
-    const url = "http://localhost:4000/api/v1/register";
+    const url = "/register";
     const {data} = await axios.post(url, formData, config
     );
    console.log(data);
@@ -58,7 +58,7 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: "loadUserRequest" });
 
-    const { data } = await axios.get("http://localhost:4000/api/v1/me",config);
+    const { data } = await axios.get("/me",config);
     dispatch({
       type: "loadUserSuccess",
       payload: data.user,
@@ -76,7 +76,7 @@ export const logOut = () => async (dispatch) => {
       type: "logOutRequest",
     });
     //eslint-disable-next-line
-    const res = await axios.get("http://localhost:4000/api/v1/logout", {
+    const res = await axios.get("/logout", {
       withCredentials: true,
     });
     // console.log(res);
@@ -91,7 +91,7 @@ export const logOut = () => async (dispatch) => {
 export const updateUserProfile = (name, email) => async (dispatch) => {
   try {
     dispatch({ type: "updateUserRequest" });
-    const url = `http://localhost:4000/api/v1/me/update`;
+    const url = `/me/update`;
     const { data } = await axios.put(url, { name, email }, config);
     console.log(data);
     dispatch({
@@ -110,7 +110,7 @@ export const updatePassword =
   (oldPassword, newPassword, confirmPassword) => async (dispatch) => {
     try {
       dispatch({ type: "updatePasswordRequest" });
-      const url = `http://localhost:4000/api/v1/password/update`;
+      const url = `/password/update`;
       const { data } = await axios.put(
         url,
         { oldPassword, newPassword, confirmPassword },
@@ -131,7 +131,7 @@ export const updatePassword =
 export const forgotPassword = (email) => async (dispatch) => {
   try {
     dispatch({ type: "forgotPasswordRequest" });
-    const url = "http://localhost:4000/api/v1/password/forgot";
+    const url = "/password/forgot";
     const { data } = await axios.post(url, {email}, config);
     console.log(data);
     dispatch({
@@ -150,7 +150,7 @@ export const resetPassword = (token,passwords) => async (dispatch) => {
   console.log(passwords);
   try {
     dispatch({ type: "resetPasswordRequest" });
-    const url = `http://localhost:4000/api/v1/password/reset/${token}`;
+    const url = `/password/reset/${token}`;
     const { data } = await axios.put(
       url,
       {
@@ -176,7 +176,7 @@ export const resetPassword = (token,passwords) => async (dispatch) => {
 export const getAllUser = () => async (dispatch) => {
   try {
     dispatch({ type: "getAllUserRequest" });
-    const url = `http://localhost:4000/api/v1/admin/users`;
+    const url = `/admin/users`;
     const { data } = await axios.get(url, config);
     console.log(data);
     dispatch({
@@ -194,7 +194,7 @@ export const getAllUser = () => async (dispatch) => {
 export const updateUser = (id, userData) => async (dispatch) => {
   try {
     dispatch({ type: "updateUserRequest" });
-    const url = `http://localhost:4000/api/v1/admin/user/${id}`;
+    const url = `/admin/user/${id}`;
     const { data } = await axios.put(url, userData, config);
     // console.log(data);
     dispatch({
@@ -212,7 +212,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
 export const deleteuser = (id) => async (dispatch) => {
   try {
     dispatch({ type: "deleteUserRequest" });
-    const url = `http://localhost:4000/api/v1/admin/user/${id}`;
+    const url = `/admin/user/${id}`;
     const { data } = await axios.delete(url, config);
     console.log(data);
     dispatch({

@@ -1,9 +1,9 @@
-import axios from 'axios'
+import axios from "../AxiosConfig"
 
 export const addItem=(id,quantity)=>async(dispatch,getState)=>{
     try{
         dispatch({type:"addItemToCartRequest"})
-        const url=`http://localhost:4000/api/v1/product/${id}`;
+        const url=`/product/${id}`;
         const {data}=await axios.get(url)
         console.log(data);
         dispatch({
@@ -30,7 +30,7 @@ export const addItem=(id,quantity)=>async(dispatch,getState)=>{
 export const removeItem=(id)=>async(dispatch,getState)=>{
     try{
         dispatch({type:"removeItemRequest"});
-        let url = `http://localhost:4000/api/v1/product/${id}`
+        let url = `/product/${id}`
         const {data}=await axios.get(url)
         console.log(data);
         dispatch({
@@ -55,7 +55,7 @@ export const removeItem=(id)=>async(dispatch,getState)=>{
 export const removeCompleteItem=(id)=>async(dispatch,getState)=>{
     try{
         dispatch({type:"removeCompleteCartItemRequest"})
-        const url=`http://localhost:4000/api/v1/product/${id}`
+        const url=`/product/${id}`
         const {data}=await axios.get(url);
         console.log(data);
         dispatch({
