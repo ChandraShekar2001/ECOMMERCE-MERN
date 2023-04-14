@@ -4,6 +4,7 @@ const config = {
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": getBaseUrl(),
+    token: localStorage.getItem("token")
   },
   withCredentials: true,
 };
@@ -84,6 +85,7 @@ export const logOut = () => async (dispatch) => {
     dispatch({
       type: "logOutSuccess",
     });
+    localStorage.removeItem("token")
   } catch (error) {
     dispatch({ type: "logOutFailure", payload: error.message });
   }

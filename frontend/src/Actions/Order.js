@@ -5,6 +5,7 @@ const config = {
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": getBaseUrl(),
+    token: localStorage.getItem("token")
   },
   withCredentials: true,
 };

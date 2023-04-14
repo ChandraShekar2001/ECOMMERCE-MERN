@@ -59,6 +59,7 @@ export const getAdminProduct = () => async (dispatch) => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": getBaseUrl(),
+        token: localStorage.getItem("token")
       },
       withCredentials: true,
     });
@@ -88,6 +89,8 @@ export const createProduct = (productData) => async (dispatch) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": getBaseUrl(),
+          token: localStorage.getItem("token")
+
         },
         withCredentials: true,
       }
@@ -119,6 +122,8 @@ export const updateProduct = (id, productData) => async (dispatch) => {
       {
         headers: {
           "Content-Type": "application/json",
+          token: localStorage.getItem("token")
+
         },
         withCredentials: true,
       }
@@ -145,6 +150,8 @@ export const deleteProduct = (id) => async (dispatch) => {
     const { data } = await axios.delete(url, {
       headers: {
         "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+
       },
       withCredentials: true,
     });
@@ -176,6 +183,8 @@ export const newReview = (reviewData) => async (dispatch) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": getBaseUrl(),
+          token: localStorage.getItem("token")
+
         },
         withCredentials: true,
       }
@@ -202,6 +211,8 @@ export const getAllReviews = (id) => async (dispatch) => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": getBaseUrl(),
+        token: localStorage.getItem("token")
+
       },
       withCredentials: true,
     });
@@ -226,6 +237,8 @@ export const deleteReview = (reviewId, productId) => async (dispatch) => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": getBaseUrl(),
+        token: localStorage.getItem("token")
+
       },
       withCredentials: true,
     });
