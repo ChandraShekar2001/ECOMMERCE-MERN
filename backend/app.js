@@ -92,7 +92,6 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-
 app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);

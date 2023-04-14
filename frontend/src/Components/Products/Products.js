@@ -216,7 +216,7 @@ const Products = (props) => {
             }}
           >
             {products.map((i) => (
-              // <Link style={{textDecoration:'none', color:'black'}} to={`/product/${i._id}`}>
+              <Link style={{textDecoration:'none', color:'black'}} to={`/product/${i._id}`}>
               <ProductCard
                 name={i.name}
                 price={i.price}
@@ -225,7 +225,7 @@ const Products = (props) => {
                 rating = {i.ratings}
                 reviews = {i.numOfReviews}
               />
-              // </Link>
+              </Link>
             ))}
           </div>
         </div>

@@ -7,7 +7,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
  /* const {
     shippingInfo,
-    orderItems,
+    orderItems, 
     paymentInfo,
     itemsPrice,
     taxPrice,

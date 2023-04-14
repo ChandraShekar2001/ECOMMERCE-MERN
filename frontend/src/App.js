@@ -12,7 +12,7 @@ import Profile from "./Components/User/Profile";
 import MyOrders from "./Components/Orders/MyOrders";
 import UpdatePassword from "./Components/User/UpdatePassword";
 import Products from "./Components/Products/Products";
-// import Product from "./Components/Products/Product";
+import Product from "./Components/Products/Product";
 import Cart from "./Components/Products/Cart"
 import ForgotPassword from "./Components/User/ForgotPassword";
 import ResetPassword from "./Components/User/ResetPassword";
@@ -66,11 +66,11 @@ function App() {
           path="/products/:category"
           element={isAuthenticated ? <Products /> : <Login />}
         />
-        {/* <Route
+        <Route
           exact
           path="/product/:id"
           element={isAuthenticated ? <Product /> : <Login />}
-        /> */}
+        />
         <Route
           exact
           path="/cart"
