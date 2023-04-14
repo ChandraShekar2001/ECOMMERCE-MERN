@@ -4,7 +4,7 @@ import axios from "../AxiosConfig";
 const config = {
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "http://localhost:3000",
+    "Access-Control-Allow-Origin": getBaseUrl(),
   },
   withCredentials: true,
 };

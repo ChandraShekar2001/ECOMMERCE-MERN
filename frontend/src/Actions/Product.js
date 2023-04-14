@@ -1,4 +1,5 @@
 import axios from "../AxiosConfig";
+import { getBaseUrl } from "../AxiosConfig";
 
 export const productActions =
   (
@@ -57,7 +58,7 @@ export const getAdminProduct = () => async (dispatch) => {
     const { data } = await axios.get(url, {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": getBaseUrl(),
       },
       withCredentials: true,
     });
@@ -86,7 +87,7 @@ export const createProduct = (productData) => async (dispatch) => {
       {
         headers: {
           "Content-Type": "application/json",
-          // "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Origin": getBaseUrl(),
         },
         withCredentials: true,
       }
@@ -174,7 +175,7 @@ export const newReview = (reviewData) => async (dispatch) => {
       {
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Origin": getBaseUrl(),
         },
         withCredentials: true,
       }
@@ -200,7 +201,7 @@ export const getAllReviews = (id) => async (dispatch) => {
     const { data } = await axios.get(url, {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": getBaseUrl(),
       },
       withCredentials: true,
     });
@@ -224,7 +225,7 @@ export const deleteReview = (reviewId, productId) => async (dispatch) => {
     const { data } = await axios.delete(url, {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": getBaseUrl(),
       },
       withCredentials: true,
     });

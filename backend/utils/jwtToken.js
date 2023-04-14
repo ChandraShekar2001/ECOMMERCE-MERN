@@ -15,7 +15,7 @@ const sendToken = (user, statusCode, res) => {
   };
   // console.log(user);
   res.header("Access-Control-Allow-Credentials",true)
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "https://frontend-8vqw.onrender.com");
   res.status(201).cookie("token", token, options).json({
    
     success: true,

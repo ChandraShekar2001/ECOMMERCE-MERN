@@ -1,9 +1,9 @@
 import axios from "../AxiosConfig";
-
+import { getBaseUrl } from "../AxiosConfig";
 const config = {
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "http://localhost:3000",
+    "Access-Control-Allow-Origin": getBaseUrl(),
   },
   withCredentials: true,
 };
@@ -19,7 +19,7 @@ export const loginUser = (formData) => async (dispatch) => {
     const response = await axios.post(url, formData, {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": getBaseUrl(),
       },
       withCredentials: true,
     });
