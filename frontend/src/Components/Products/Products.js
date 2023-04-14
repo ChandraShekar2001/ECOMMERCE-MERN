@@ -11,13 +11,22 @@ import { useParams, Link } from "react-router-dom";
 const Products = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
+  let category= "";
+  let keyword = params.keyword;
+  console.log(keyword);
+  if(params.category !== "Laptop" || params.category !== "Watch" || params.category !== "Tv" || params.category !== "Accessories"){
+    category = ""
+    keyword = params.category;
+    // console.log("1234");
+  }else{
+    category = params.category;
+  }
 
-  const keyword = params.keyword;
-  const category = params.category;
   let [currentPage, setCurrentPage] = useState(1);
   let [price, setPrice] = useState([0, 250000]);
   let [ratings, setRatings] = useState(0);
 
+  
   const priceFilterHandler = (e) => {
     let pricesString = e.target.id.split(",");
     setPrice([Number(pricesString[0]), Number(pricesString[1])]);
@@ -222,6 +231,7 @@ const Products = (props) => {
                 price={i.price}
                 id={i._id}
                 key={i._id}
+                images = {i.images}
                 rating = {i.ratings}
                 reviews = {i.numOfReviews}
               />

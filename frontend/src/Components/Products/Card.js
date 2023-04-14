@@ -17,7 +17,7 @@ const Card = (props) => {
       <div class="card-main" >
         <div className="imgCardDiv" style={{ width: "20rem", height: "20rem" }}>
           <img
-            src="https://image01.realme.net/general/20200630/1593487442773.jpg.webp"
+            src={props.images[1].url}
             class="card-img-top"
             style={{ height: "100%", width: "100%", objectFit:"cover" }}
             alt="Product"
@@ -48,7 +48,7 @@ const Card = (props) => {
           <h6>
             Rs. {props.price}{" "}
             <span>
-              <s>Rs. 1299</s>
+              <s>{1.4*props.price}</s>
             </span>
             <span className="offerPercent"> (40% OFF)</span>
           </h6>

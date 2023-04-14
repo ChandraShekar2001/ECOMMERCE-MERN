@@ -8,7 +8,7 @@ mongoose.set('strictQuery', false)
 
 const connectDatabase = () => {
   mongoose
-    .connect('mongodb://0.0.0.0:27017/Ecommerce', {
+    .connect('mongodb+srv://Chandu:passwordforapp@cluster0.llnhohr.mongodb.net/Ecommerce?retryWrites=true&w=majority', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })

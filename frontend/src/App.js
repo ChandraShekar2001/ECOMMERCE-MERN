@@ -20,6 +20,9 @@ import Shipping from "./Components/Orders/Shipping";
 import OrderConfirm from "./Components/Orders/OrderConfirm";
 import OrderSuccess from "./Components/Orders/OrderSuccess";
 import Payment from "./Components/Orders/Payment";
+import AboutUs from './Components/utils/Aboutus'
+import Contact from "./Components/utils/ContactUs";
+import Error from "./Components/utils/Error";
 
 import AdminSideBar from "./Components/Admin/AdminSideBar";
 import Dashboard from "./Components/Admin/Dashboard";
@@ -92,6 +95,9 @@ function App() {
             <Payment />
           }
         />
+        <Route exact path="/about" element={<AboutUs />} />
+        <Route exact path="/contact" element={<Contact />} />
+
         <Route path="/admin/*" element={<AdminSideBar />}>
           <Route path="" element={<Dashboard />} />
           <Route path="dashboard" element={role === "admin" && <Dashboard />} />
@@ -100,8 +106,9 @@ function App() {
           <Route path="product" element={<NewProduct />} />
           <Route path="users" element={<UsersList />} />
           <Route path="reviews" element={<ProductReview />} />
-
+  
         </Route>
+        <Route path="*" element = {<Error/>}/>
       </Routes>
       
       {isAuthenticated && <Footer />}

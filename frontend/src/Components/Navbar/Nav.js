@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css";
 import { FaUserCircle } from "react-icons/fa";
@@ -8,7 +8,7 @@ import Badge from "@material-ui/core/Badge";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsFolderPlus } from "react-icons/bs";
 import { BsPower } from "react-icons/bs";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdImportExport } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -16,11 +16,22 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../../Actions/User";
 import { Link } from "react-router-dom";
 
+import { productActions } from "../../Actions/Product";
 
 const Navbar = () => {
+  const navigagte = useNavigate()
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
+  const [keyword, setKeyword] = useState("");
+
+  const onSubmitHandler = (e) =>{
+    e.preventDefault();
+    console.log(keyword);
+    navigate(`products/${keyword}`);
+    setKeyword("")
+  }
+
   // var itemsNumber = 0;
   // cartItems = cartItems.map((i) => {
   //   itemsNumber = itemsNumber + i.quantity;
@@ -42,9 +53,9 @@ const Navbar = () => {
     navigate("/cart");
   };
 
-  const gotoHomeHandler = () => {
-    navigate("/");
-  };
+  // const gotoHomeHandler = () => {
+  //   navigate("/");
+  // };
 
   const gotoDashboardHandler=()=>{
     navigate('/admin');
@@ -69,19 +80,21 @@ const Navbar = () => {
             height:"3.8rem"
           }}
         >
-          <form className="nosubmit" style={{ display: "flex",color:"gray" }}>
+          <form className="nosubmit" style={{ display: "flex",color:"gray" }} onSubmit = {onSubmitHandler}>
             <FiSearch style={{ fontSize:"2rem", marginTop: "0.2em" }} />
             <input
               className="search-input"
               type="search"
               placeholder="Search..."
+              value= {keyword}
+              onChange= {(e) => setKeyword(e.target.value)}
             ></input>
           </form>
         </div>
-        <div className="nProducts" onClick={gotoHomeHandler}>
-          Home
+        <div className="nProducts" >
+        <Link to={'/contact'} className="nProducts">Contact</Link>
         </div>
-        <div className="nProducts">About</div>
+        <div className="nProducts"><Link to={'/about'} className="nProducts">About</Link></div>
         <div className="navlLogin">
           <button className="navLogin">
             <FaUserCircle style={{ color:"black", fontSize: "3.5rem" }} />

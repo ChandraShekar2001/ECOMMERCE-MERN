@@ -90,7 +90,7 @@ function Product() {
               overflow='scroll'
             >
               <GridItem colSpan={1} rowStart='1' colStart='1' >
-                <Image src={product.images.length > 0 ? product.images[0].url : image1 } w='100%' _hover={style.hover} onClick={() => handleImageClick(product.images[0].url)} style={{objectFit:'contain', height:'100%', width:'100%'}} />
+                <Image src={product.images.length > 0 ? product.images[0].url : image1 } w='100%' _hover={style.hover} onClick={() => handleImageClick(product.images[0].url)} style={{objectFit:'cover', height:'100%', width:'100%'}} />
               </GridItem>
               <GridItem colSpan={1} rowStart='2' colStart='1'  >
                 <Image  src={product.images.length > 0? product.images[1].url : image1} objectFit='scale-down' _hover={style.hover} onClick={() => handleImageClick(product.images[1].url)} style={{objectFit:'contain', height:'100%', width:'100%'}} />
@@ -99,7 +99,7 @@ function Product() {
                 <Image _hover={style.hover} src={product.images.length > 0 ? product.images[2].url : image1} objectFit='scale-down' onClick={() => handleImageClick(product.images[2].url)} style={{objectFit:'contain', height:'100%', width:'100%'}} />
               </GridItem>
               <GridItem rowSpan={4} colSpan={5} colStart='2' bg='#e4e4e5'  >
-                <Image src={!selectedImage ? (product.images.length > 0 ? product.images[0].url : image1) : selectedImage} w='100%' style={{objectFit:'contain', height:'100%', width:'100%'}} />
+                <Image src={!selectedImage ? (product.images.length > 0 ? product.images[0].url : image1) : selectedImage} w='100%' style={{objectFit:'cover', height:'100%', width:'100'}} />
               </GridItem>
             </Grid>
 

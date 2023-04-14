@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.background-image {
+    width: 60vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.contactusForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    width: 40vw;
+    height: auto;
+}
+
+
+.titleOfForm {
+    text-align: center;
+    font-size: 5rem;
+    margin-bottom: 3rem;
+}
+
+.form-label {
+    font-size: 2rem;
+}
+
+.contactusForm input {
+    width:100%;
+    height:4.5rem;
+    padding:0.5rem;
+    margin-bottom:2rem;
+    border-radius:5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-text{
+    font-size: 1.5rem;
+    margin-top: -1rem;
+    padding-left: 1rem;
+}
+
+
+.btn-primary {
+    font-size:2rem;
+    margin-top: 2rem;
+    width: 100%;
+    height: 4rem;
+}
