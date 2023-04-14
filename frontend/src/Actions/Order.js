@@ -1,5 +1,5 @@
 import axios from "../AxiosConfig";
-
+import { getBaseUrl } from "../AxiosConfig";
 
 const config = {
   headers: {
