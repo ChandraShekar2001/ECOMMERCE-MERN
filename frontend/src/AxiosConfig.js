@@ -4,7 +4,7 @@ export const getBaseUrl = () => {
     let url;
     switch (process.env.REACT_APP_ENV) {
         case 'production':
-            url = 'https://backend-c5ug.onrender.com/';
+            url = 'https://backend-c5ug.onrender.com/api/v1';
             break;
         case 'development':
         default:
