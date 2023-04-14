@@ -22,10 +22,11 @@ const Home = (props) => {
     dispatch(productActions());
   }, [dispatch]);
 
-  let { products } = useSelector((state) => state.product);
+  let { products, loading } = useSelector((state) => state.product);
   let filtered = products.slice(0, 8);
   return (
     <>
+      {!loading ?     <>
       <div style={{ marginTop: "8em", backgroundColor: "#f4f4f5" }}>
         <Carousel>
           {images.map((image, i) => (
@@ -47,6 +48,7 @@ const Home = (props) => {
                 name={product.name}
                 price={product.price}
                 id={product._id}
+                images = {product.images}
                 reviews = {product.reviews.length}
               />
             ))}
@@ -70,6 +72,7 @@ const Home = (props) => {
           </div>
         </div>
       </div>
+    </>: <p>Loading...</p>}
     </>
   );
 };

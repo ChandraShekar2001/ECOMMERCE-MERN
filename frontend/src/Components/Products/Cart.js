@@ -49,7 +49,7 @@ const Cart = () => {
                 <div className="myCartPhotoDiv">
                   <img
                     className="myCartImageDiv"
-                    src="https://image01.realme.net/general/20220829/1661751207954.png.webp"
+                    src={i.images[0].url}
                     alt=""
                   />
                 </div>

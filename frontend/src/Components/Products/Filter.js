@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Product.css";
+import "./Filter.css";
 import { FaFilter } from "react-icons/fa";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { productActions } from "../../Actions/Product";

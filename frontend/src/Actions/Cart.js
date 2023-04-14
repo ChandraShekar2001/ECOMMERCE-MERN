@@ -13,6 +13,7 @@ export const addItem=(id,quantity)=>async(dispatch,getState)=>{
                 name: data.product.name,
                 price: data.product.price,
                 stock: data.product.Stock,
+                images: data.product.images,
                 quantity
             }
         })

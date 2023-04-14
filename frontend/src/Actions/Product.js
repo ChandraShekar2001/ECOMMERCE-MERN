@@ -185,9 +185,10 @@ export const newReview = (reviewData) => async (dispatch) => {
       payload: data.allProducts,
     });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: "newReviewFail",
-      payload: error,
+      payload: error.message,
     });
   }
 };

@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+
+.filterMainDiv{
+    padding: 1.5em;
+    display: flex;
+    border-radius: 2em;
+    border-width: thin;
+    margin-top: 5.5%;
+    height: 25%;
+    width: 18%;
+    flex-basis: 20%;
+    flex-direction: column;
+    margin-left: 16.5px;
+    background-color: #fff;
+    position:relative;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+}
+
+.fontSize{
+    font-size: 1.5rem;
+}
+
+.inputRadio{
+    /* margin-top: 7%; */
+    margin: 1em 0;
+    /* float: left; */
+    display: inline-block;
+    accent-color: #008000;
+}
+
+label{
+    /* margin-bottom: 10px; */
+    margin-left: 2%;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+
+.filterSymbol{
+    margin-top: 0.5em;
+    margin-left: 2px;
+    margin-right: 1.2%;
+    color: #008000;
+    background-color: white;
+    border:1px solid white;
+    font-size: 20px;
+}
+
+.filterName{
+    font-size:2.5rem ;
+    padding-left: 2%;
+    display: flex;
+    /* border-bottom: 1px solid rgb(199, 198, 198); */
+}
+
+.clearFilters{
+    margin-left: 45%;
+    margin-top: 2.7%;
+    font-size: 0.6rem;
+}
+
+.clearFilters:hover{
+    cursor: pointer;
+    color: #008000;
+}
+
+.category{
+    font-weight: 500;
+    /* border-bottom:0.01em solid rgb(199, 198, 198); */
+    border-width: thin;
+    font-size: 1.5rem;
+    display:flex;
+    margin: 0.5em 0;
+    /* margin-bottom:em; */
+}
+
+.categoryName{
+    font-size: 2rem;
+}
+
+.products{
+    border-bottom:0.01em solid rgb(199, 198, 198);
+    display: block;
+    margin-left: 1.4em;
+}
+.productsNone{
+    border-bottom:0.01em solid rgb(199, 198, 198);
+    display: none;
+    padding:5%;
+}
+
+
+.divArrowCategory{
+    margin: 7px;
+    margin-left: 54%;
+    height: 10px;
+    width: 10px;
+    border: 2px solid #333;
+    /* z-index:10000; */
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+
+.setDivArrowCategory{
+    margin: 7px;
+    margin-left: 54%;
+    height: 10px;
+    width:10px;
+    /* z-index:10000; */
+    border: 2px solid #333;
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-225deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+.divArrowBrand{
+    margin: 7px;
+    margin-left: 66%;
+    height: 10px;
+    width: 10px;
+    border: 2px solid #333;
+    /* z-index:10000; */
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+
+.setDivArrowBrand{
+    margin: 7px;
+    margin-left: 66%;
+    height: 10px;
+    width:10px;
+    /* z-index:10000; */
+    border: 2px solid #333;
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-225deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+.divArrowPrice{
+    margin: 7px;
+    margin-left: 70%;
+    height: 10px;
+    width: 10px;
+    border: 2px solid #333;
+    /* z-index:10000; */
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+
+.setDivArrowPrice{
+    margin: 7px;
+    margin-left: 70%;
+    height: 10px;
+    width:10px;
+    /* z-index:10000; */
+    border: 2px solid #333;
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-225deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+.divArrowRating{
+    margin: 7px;
+    margin-left: 65%;
+    height: 10px;
+    width: 10px;
+    border: 2px solid #333;
+    /* z-index:10000; */
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+
+.setDivArrowRating{
+    margin: 7px;
+    margin-left: 65%;
+    height: 10px;
+    width:10px;
+    /* z-index:10000; */
+    border: 2px solid #333;
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-225deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+
+
+.divArrowAvailability{
+    margin: 7px;
+    margin-left: 46%;
+    height: 10px;
+    width: 10px;
+    border: 2px solid #333;
+    /* z-index:10000; */
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+
+.setDivArrowAvailability{
+    margin: 7px;
+    margin-left: 46%;
+    height: 10px;
+    width:10px;
+    /* z-index:10000; */
+    border: 2px solid #333;
+    border-top:2px solid #fff;
+    border-right:2px solid #fff;
+    transform: rotate(-225deg);
+    transition: 0.5s;
+    /* pointer-events:none; */
+    cursor: pointer;
+}
+
+.price label *{
+    font-size: 1.6rem;
+}
+
+.price label p{
+    display: inline-block;
+    padding-top: 0.2em;
+}
+
+.price input{
+    margin-top: 1.4em;
+}
+
+.custom{
+    font-size: 1.5rem;
+}
+.custom form input{
+    width: 7rem;
+    margin-left: 1em;
+    font-size: 1.4rem;
+}
+
+.clear{
+    font-size: 1.2rem;
+    color: red;
+    margin-left: 17em;
+    margin-top: 0.5em;
+    cursor: pointer
+}

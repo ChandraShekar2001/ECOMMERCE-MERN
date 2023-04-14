@@ -1,57 +1,98 @@
-import { Box, Button, Center, Circle, Flex, Spacer, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Grid, GridItem, Heading, HStack, Image, SimpleGrid, StackDivider, Text, VStack, Icon, IconButton, InputGroup, Input, InputRightElement, Toast, useToast } from '@chakra-ui/react'
 import React, { useState, useEffect } from 'react'
-
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { BsHandbag, BsTruck } from 'react-icons/bs'
 import { CiPercent } from 'react-icons/ci'
-import SimilarProduct from './SimilarProduct'
-import SingleReview from './SingleReview';
+import {addItem} from "../../Actions/Cart"
+import { FaStar } from 'react-icons/fa';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+
 import image1 from "../../images/carousel-2.jpg"
 import { fetchSingleProduct } from "../../Actions/Product";
-import{useSelector, useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useParams } from 'react-router-dom';
+import { newReview } from '../../Actions/Product';
+import './Product.css'
+import { useAlert } from "react-alert";
 
 function Product() {
   const params = useParams()
+  const alert = useAlert()
   const dispatch = useDispatch()
-  const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedImage, setSelectedIMage] = useState();
 
   const id = params.id;
 
 
-  const {product, loading} = useSelector(state => state.product)
-  // console.log(product.images[0]);
+  const { product, loading } = useSelector(state => state.product)
 
   useEffect(() => {
-    // if (error) {
-    //   alert.error(error);
-    //   dispatch(singleProductSliceActions.setsproductReset());
-    // }
-    // if (success) { 
-    //   newReviewActions.newReviewReset()
-    // }
-    // if (reviewError) {
-    //   newReviewActions.newReviewReset()
-    // }
     dispatch(fetchSingleProduct(id));
   }, [dispatch, id]);
+
+  const addItemsToCartHandler = () => {
+    dispatch(addItem(id, 1))
+    alert.success("Item added to cart")
+    // console.log(props.id);
+  }
 
   const handleImageClick = (src) => {
     setSelectedIMage(src);
   };
 
   const [rating, setRating] = useState(0);
+  const [review, setReview] = useState('');
 
-  const handleClick = (value) => {
-    if (rating === value) {
-      // If the user clicks on the same star twice, reset the rating
-      setRating(0);
-    } else {
-      setRating(value);
-    }
+
+
+  const colors = {
+    orange: "#008000",
+    grey: "#a9a9a9"
+
   };
 
+
+  const [currentValue, setCurrentValue] = useState(0);
+  const [hoverValue, setHoverValue] = useState(undefined);
+  const stars = Array(5).fill(0)
+
+  const handleClick = value => {
+    setCurrentValue(value)
+  }
+
+  const handleMouseOver = newHoverValue => {
+    setHoverValue(newHoverValue)
+  };
+
+  const handleMouseLeave = () => {
+    setHoverValue(undefined)
+  }
+
+  const Star = ({ star }) => {
+    const ratingStar = stars.map((_, index) => {
+      return (
+        <FaStar
+          key={index}
+          size={24}
+          onClick={() => handleClick(index + 1)}
+          onMouseOver={() => handleMouseOver(index + 1)}
+          onMouseLeave={handleMouseLeave}
+          color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+          style={{
+            marginRight: 10,
+            cursor: "pointer"
+          }}
+        />
+      )
+    })
+
+    return (
+      <>
+        <div>
+          {ratingStar}
+        </div>
+      </>
+    )
+  };
 
   const style = {
     hover: {
@@ -67,272 +108,291 @@ function Product() {
     }
   }
 
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    // console.log(review, currentValue);
+    const rating = currentValue;
+    const comment = review
+    dispatch(newReview({rating, comment, id}));
+    
+  }
   return (
     <>
- 
+      {!loading && product? <>
+        <div className='product-view'>
+          <div className='images-box'>
 
-      {!loading ? <><Box w={"full"}
-        mt={"7em"}
-        p={"25px 30px"}>
-        <Grid templateColumns={"55% 40%"} gap={8} w="full">
-          <Box
-            position={"sticky"}
-            top="0px"
-            h="max-content"
-            ml='8em'
-          >
+            <div className='image-column'>
+              {
+                product.images.map((image, index) => {
+                  return (
+                    <div key={index}>
+                      <img src={image.url} alt="" className='image' onClick={() => (handleImageClick(image))} />
+                    </div>
+                  )
+                })
+              }
+            </div>
 
-            <Grid
-              h='50rem'
-              templateRows='repeat(4, 1fr)'
-              templateColumns='repeat(6, 1fr)'
-              gap={2}
-              overflow='scroll'
-            >
-              <GridItem colSpan={1} rowStart='1' colStart='1' >
-                <Image src={product.images.length > 0 ? product.images[0].url : image1 } w='100%' _hover={style.hover} onClick={() => handleImageClick(product.images[0].url)} style={{objectFit:'cover', height:'100%', width:'100%'}} />
-              </GridItem>
-              <GridItem colSpan={1} rowStart='2' colStart='1'  >
-                <Image  src={product.images.length > 0? product.images[1].url : image1} objectFit='scale-down' _hover={style.hover} onClick={() => handleImageClick(product.images[1].url)} style={{objectFit:'contain', height:'100%', width:'100%'}} />
-              </GridItem>
-              <GridItem colSpan={1} rowStart='3' colStart='1'  >
-                <Image _hover={style.hover} src={product.images.length > 0 ? product.images[2].url : image1} objectFit='scale-down' onClick={() => handleImageClick(product.images[2].url)} style={{objectFit:'contain', height:'100%', width:'100%'}} />
-              </GridItem>
-              <GridItem rowSpan={4} colSpan={5} colStart='2' bg='#e4e4e5'  >
-                <Image src={!selectedImage ? (product.images.length > 0 ? product.images[0].url : image1) : selectedImage} w='100%' style={{objectFit:'cover', height:'100%', width:'100'}} />
-              </GridItem>
-            </Grid>
+            <div className='display-box'>
+              <img src={!selectedImage ? (product.images.length > 0 ? product.images[0].url : image1) : selectedImage.url} alt='' className='display-img' />
+            </div>
+          </div>
 
+          <div className='product-details'>
+            <div className='product-name'>
+              {product.name}
+            </div>
 
-          </Box>
-          {/* ............................. */}
-          <Box
+            <div className='product-rating-box'>
+              <div className='product-rating'>
+                {product.ratings}.0
+              </div>
+              <div className='product-rating-star'>&#9733;</div>
+              <div className='product-rating-seperator'>|</div>
+              <div className='product-rating-count'>{product.numOfReviews} Ratings</div>
+            </div>
+            <div className='line' />
 
-          >
+            <div className='product-price-box'>
+              <div className='sale-price'>
+                ₹{product.price}
+              </div>
+              <div className='mrp-tag'>MRP</div>
+              <div className='mrp-price'>
+                ₹{Math.floor(product.price * 1.1)}
+              </div>
+              <div className='offer-percentage'>(10% OFF)</div>
+            </div>
 
-            <VStack
-              spacing={4}
-              textAlign="left"
-              align={'flex-start'}
-              w={"full"}
-              divider={<StackDivider borderColor='gray.200' />}
+            <div className='tax-text'>
+              Inclusive of all taxes
+            </div>
 
-            >
+            <div className='buttons-box'>
+              <button className='add-to-cart buttons' onClick = {addItemsToCartHandler}><BsHandbag /> ADD TO CART</button>
+              <button className='buy-now buttons'>BUY NOW</button>
+            </div>
+            <div className='line' />
 
+            <div className='delivery-heading'>
+              DELIVERY <BsTruck style={{ fontSize: '1.3em' }} />
+            </div>
+            <div className='delivery-text-box'>
+              <div>100% Original Products</div>
+              <div>Pay on delivery available</div>
+              <div>Easy 10 day return and exchange</div>
+              <div>Assured Delivery</div>
+            </div>
+            <div className='line' />
 
-              <Box w="full">
-                <Heading fontWeight={"600"} as={"h2"} color="#282c3f" fontSize="28px" size="lg" > {product.name} </Heading>
-                <Heading fontWeight={"300"} as={"h2"} color="#535665" fontSize="20px" size="lg">   {product.description}  </Heading>
+            <div className='offers-heading'>
+              Best Offers <CiPercent style={{ fontSize: '1.2em' }} />
+            </div>
+            <dvi className='offers-box'>
+              <div className='offer-box'>
+                <div className='offer-heading'>
+                  Bank Offer
+                </div>
+                <div className='offer-text'>
+                  Upto ₹15,000 off on select credit cards.
+                </div>
+              </div>
+              <div className='offer-box'>
+                <div className='offer-heading'>
+                  No Cost EMI
+                </div>
+                <div className='offer-text'>
+                  No cost EMI with HDFC Bank Accounts.
+                </div>
+              </div>
+              <div className='offer-box'>
+                <div className='offer-heading'>
+                  Cash Back
+                </div>
+                <div className='offer-text'>
+                  Upto ₹1,500 cashback on UPI payments.
+                </div>
+              </div>
+            </dvi>
+            <div className='line' />
 
-                <Box w={"full"} mt="15px">
-                  <HStack
-                    w="max-content"
-                    cursor={"pointer"}
-                    transition={".5s all"}
-                    spacing={"2px"}
-                    border={"1px solid #e0e0e0"}
-                    borderRadius="3px"
-                    padding={"0.001em 4px"}
-                    _hover={{ borderColor: "#282c3f" }}
-                  >
-                    <HStack spacing={1}>
-                      <Text fontWeight={"bold"} style={{marginTop:'0.9em'}}>{product.ratings}</Text>
-                      <Text color="#72bfbc" >&#9733;</Text>
-                    </HStack>
-                    <HStack spacing={1}>
-                      <Text color="#e0e0e0" fontWeight={"bold"}>|</Text>
-                      <Text fontWeight={300} color="#535766" > {product.reviews.length} Ratings</Text>
-                    </HStack>
-                  </HStack>
+            <div className='details-heading'>
+              Product Details
+            </div>
+            <div className='details-text'>
+              {product.description}
+            </div>
 
-                </Box>
+          </div>
+        </div>
 
-              </Box>
-              {/* .................... */}
+        <div className='similar-products-heading'>
+          SIMILAR PRODUCTS
+        </div>
+        <div className='similar-products-box'>
+          <div className='similar-product-box'>
+            <div className='similar-product-image'>
+              <img src={image1} alt='' />
+            </div>
+            <div className='similar-product-name'>
+              Asus Laptop
+            </div>
+            <div className='similar-product-price'>
+              ₹ 60,000
+            </div>
+            <div className='similar-product-rating-box'>
+              <div className='similar-product-rating'>
+                4.0
+              </div>
+              <div className='similar-product-rating-star'>&#9733;</div>
+              <div className='similar-product-rating-seperator'>|</div>
+              <div className='similar-product-rating-count'>20 Ratings</div>
+            </div>
+          </div>
+          <div className='similar-product-box'>
+            <div className='similar-product-image'>
+              <img src={image1} alt='' />
+            </div>
+            <div className='similar-product-name'>
+              Asus Laptop
+            </div>
+            <div className='similar-product-price'>
+              ₹ 60,000
+            </div>
+            <div className='similar-product-rating-box'>
+              <div className='similar-product-rating'>
+                4.0
+              </div>
+              <div className='similar-product-rating-star'>&#9733;</div>
+              <div className='similar-product-rating-seperator'>|</div>
+              <div className='similar-product-rating-count'>20 Ratings</div>
+            </div>
+          </div>
+          <div className='similar-product-box'>
+            <div className='similar-product-image'>
+              <img src={image1} alt='' />
+            </div>
+            <div className='similar-product-name'>
+              Asus Laptop
+            </div>
+            <div className='similar-product-price'>
+              ₹ 60,000
+            </div>
+            <div className='similar-product-rating-box'>
+              <div className='similar-product-rating'>
+                4.0
+              </div>
+              <div className='similar-product-rating-star'>&#9733;</div>
+              <div className='similar-product-rating-seperator'>|</div>
+              <div className='similar-product-rating-count'>20 Ratings</div>
+            </div>
+          </div>
+          <div className='similar-product-box'>
+            <div className='similar-product-image'>
+              <img src={image1} alt='' />
+            </div>
+            <div className='similar-product-name'>
+              Asus Laptop
+            </div>
+            <div className='similar-product-price'>
+              ₹ 60,000
+            </div>
+            <div className='similar-product-rating-box'>
+              <div className='similar-product-rating'>
+                4.0
+              </div>
+              <div className='similar-product-rating-star'>&#9733;</div>
+              <div className='similar-product-rating-seperator'>|</div>
+              <div className='similar-product-rating-count'>20 Ratings</div>
+            </div>
+          </div>
+          <div className='similar-product-box'>
+            <div className='similar-product-image'>
+              <img src={image1} alt='' />
+            </div>
+            <div className='similar-product-name'>
+              Asus Laptop
+            </div>
+            <div className='similar-product-price'>
+              ₹ 60,000
+            </div>
+            <div className='similar-product-rating-box'>
+              <div className='similar-product-rating'>
+                4.0
+              </div>
+              <div className='similar-product-rating-star'>&#9733;</div>
+              <div className='similar-product-rating-seperator'>|</div>
+              <div className='similar-product-rating-count'>20 Ratings</div>
+            </div>
+          </div>
 
-              <VStack align="flex-start" w="full" spacing={"20px"}>
+        </div>
 
-                <VStack align="flex-start" w="full">
-                  <HStack spacing={2}>
-                    <Heading fontWeight={"600"} as={"h2"} color="#282c3f" fontSize="20px" size="lg" > {product.price} </Heading>
-                    <HStack spacing={1}>
-                      <Heading fontWeight={300} as={"h2"} color="#535665" fontSize="20px" size="lg"> MRP</Heading>
-                      <Heading fontWeight={300} as={"h2"} color="#535665" fontSize="20px" size="lg" textDecoration={"line-through"}> {product.price + 0.1*product.price} </Heading>
-                    </HStack>
-                    <Heading fontWeight={"600"} as={"h2"} color="#ff905a" fontSize="20px" size="lg" > (10% OFF) </Heading>
+        <div className='reviews-heading'>
+          REVIEWS
 
+          <button className='add-to-cart review-button' data-bs-toggle="modal" data-bs-target="#exampleModal" >Add Review</button>
+        </div>
+        <div className="modal" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1">
+          <div className="modal-dialog modal-dialog-centered ">
+            <div className="modal-content m-size">
+              <div className="modal-header">
+                <h5 className="modal-title m-heading">Your review</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body d-flex flex-column align-items-center justify-content-center">
+                <form className='mb-2 m-form' >
+                  <input type="textarea" onChange={(e) => {
+                    setReview(e.target
+                      .value
+                    )
+                  }} value={review} placeholder='Review here' />
+                </form>
+                <Star star={currentValue} />
 
-                  </HStack>
-                  <Text color={"#03a685"} fontSize="12px" fontWeight={"bold"}>inclusive of all taxes</Text>
-                </VStack>
-
-
-
-                <HStack>
-                  <Button color={"#fff"} borderRadius={3} p="1em 2em" leftIcon={<BsHandbag />} colorScheme='green' variant={"solid"}>
-                    ADD TO BAG
-                  </Button>
-                  <Button color={"#000"} borderRadius={3} p="1em 2em" colorScheme="cyan" variant={"outline"}>
-                    BUY NOW
-                  </Button>
-
-                </HStack>
-
-              </VStack>
-
-              <VStack align="flex-start" w="full" spacing={"20px"}>
-                <HStack>
-                  <Text>DELIVERY OPTIONS</Text>
-                  <Icon as={BsTruck} fontSize="xl" />
-                </HStack>
-
-                <Box>
-                  <InputGroup size='md' >
-                    <Input
-                      focusBorderColor="#bdbdbd"
-                      placeholder='Enter pincode'
-                      maxLength={6}
-                    />
-                    <InputRightElement width='4.5rem'>
-                      <Button variant={"unstyled"} color="green.600" >
-                        Check
-                      </Button>
-                    </InputRightElement>
-                  </InputGroup>
-                </Box>
-
-                <VStack align="flex-start" w="full" spacing={"10px"} py="20px">
-                  <Text color={"#282c3f"} fontSize="14px">100% Original Products</Text>
-                  <Text color={"#282c3f"} fontSize="14px">Pay on delivery might be available</Text>
-                  <Text color={"#282c3f"} fontSize="14px">Easy 10 days returns and exchanges</Text>
-                  <Text color={"#282c3f"} fontSize="14px">Assured delivery</Text>
-                </VStack>
-
-
-
-              </VStack>
-
-              <VStack align="flex-start" w="full" spacing={"20px"}>
-                <HStack>
-                  <Text>Best Offers</Text>
-                  <Icon as={CiPercent} fontSize="xl" />
-                </HStack>
-                <HStack>
-                  <Box maxW='8em' borderWidth='1px' borderRadius={'lg'} overflow='hidden' p={'2'}>
-                    <Text fontWeight={'bold'} fontSize='16px'>Bank Offer</Text>
-                    <Box mt='1' fontWeight={'semibold'} fontSize='12px' lineHeight='tight' noOfLines={'3'}>
-                      Upto ₹ 15,000 discount on select Credit Cards
-                    </Box>
-                  </Box>
-                  <Box maxW='8em' borderWidth='1px' borderRadius={'lg'} overflow='hidden' p={'2'}>
-                    <Text fontWeight={'bold'} fontSize='16px'>No Cost EMI</Text>
-                    <Box mt='1' fontWeight={'semibold'} fontSize='12px' lineHeight='tight' noOfLines={'3'}>
-                      Upto ₹ 20,000 EMI Interest saving on Paying with ICICI Debit Cards
-                    </Box>
-                  </Box>
-                  <Box maxW='8em' borderWidth='1px' borderRadius={'lg'} overflow='hidden' p={'2'}>
-                    <Text fontWeight={'bold'} fontSize='16px'>Cash Back</Text>
-                    <Box mt='1' fontWeight={'semibold'} fontSize='12px' lineHeight='tight' noOfLines={'3'}>
-                      Upto ₹ 200 cashback on payment through Paytm or other UPI service providers
-                    </Box>
-                  </Box>
-                </HStack>
-
-              </VStack>
-
-              <VStack align="flex-start" w="full" spacing={"20px"}>
-                <HStack>
-                  <Text>Product Details</Text>
-
-                </HStack>
-                <Text
-                  color={"#282c3f"} fontSize="14px"
-                >
-                  Look no further, to bring out your sensuality with this uniquely designed brassiere. It comes with push-up cups supported with foam in a soft fabric, gorgeously seamless and will enhance cleavage to give them perfect shape. Underwired and front open hooks, this lace trimmed bra is super comfortable, giving you the right oomph. The stylized racer back with embrodiered lace adds to your charming personality. Own your Passion Back brassiere today.
-                </Text>
-
-              </VStack>
-
-            </VStack>
-
-          </Box>
-
-        </Grid>
-      </Box>
-
-
-
-      <Box w='full' p={"50px 30px"} >
-        <Text textAlign="left" my={8} fontWeight={"bold"} color="#282c3f">SIMILAR PRODUCTS</Text>
-        <SimpleGrid
-          columns={5}
-          spacingX='40px'
-          spacingY='30px'
-          w='100%'
-        >
-          {Array.apply(0, Array(5)).map(function (x, i) {
-            return <SimilarProduct key={i} />;
-          })}
-        </SimpleGrid>
-      </Box>
-
- 
-
-      <Box w='full' p={"50px 30px"} >
-        <HStack>
-          <Text textAlign="left" my={8} fontWeight={"bold"} color="#282c3f">REVIEWS</Text>
-
-          <Spacer />
-
-          <Button onClick={onOpen}>Add Review</Button>
-
-          <Modal onClose={onClose} isOpen={isOpen} isCentered>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Your Review</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <VStack spacing={10}>
-                  <Input placeholder='Write Review' />
-                  <HStack spacing="1">
-                    {[1, 2, 3, 4, 5].map((value) => {
-                      // Calculate the star icon based on the current rating
-                      let starIcon =
-                        value <= rating ? (
-                          <FaStar />
-                        ) : value - 0.5 === rating ? (
-                          <FaStarHalfAlt />
-                        ) : (
-                          <FaRegStar />
-                        );
-                      return (
-                        <IconButton
-                          key={value}
-                          aria-label={`${value} stars`}
-                          icon={starIcon}
-                          onClick={() => handleClick(value)}
-                          colorScheme={value <= rating ? "green" : "gray"}
-                        />
-                      );
-                    })}
-                  </HStack>
-                </VStack>
-              </ModalBody>
-              <ModalFooter>
-                <Button onClick={onClose}>Submit</Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </HStack>
-
-        <SingleReview />
-      </Box> </>: <p>Loading....</p>}
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="add-to-cart buttons" onClick={onSubmitHandler} data-bs-dismiss="modal">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='reviews-box'>
+          {
+            product.reviews.map((review, index) => {
+              return (
+                <div className='review-box'>
+                  <div className='review-heading'>
+                    <div className='review-info-box'>
+                      <div className='profile-pic'>
+                        <img src={image1} alt='' />
+                      </div>
+                      <div className='review-info'>
+                        <div className='review-name'>{review.name}</div>
+                        <div className='review-date'>2022-12-13</div>
+                      </div>
+                    </div>
+                    <div className='review-rating-box'>
+                      <div className='review-rating'>
+                        {review.rating}.0
+                      </div>
+                      <div className='product-rating-star'>&#9733;</div>
+                    </div>
+                  </div>
+                  <div className='line' />
+                  <div className='review-text'>
+                    {review.comment}
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
+      </> : <p>Loading....</p>}
     </>
   )
 }
 
 
 export default Product
-
-
-

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./Product.css";
+// import "./Product.css";
+import "./Filter.css";
 import "./display2.css";
 import ProductCard from "./Card";
 import { FaFilter } from "react-icons/fa";
@@ -11,14 +12,19 @@ import { useParams, Link } from "react-router-dom";
 const Products = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
-  let category= "";
+  let category = "";
   let keyword = params.keyword;
-  console.log(keyword);
-  if(params.category !== "Laptop" || params.category !== "Watch" || params.category !== "Tv" || params.category !== "Accessories"){
-    category = ""
+  console.log(params.category);
+  if (
+    params.category !== "Laptop" &&
+    params.category !== "Watch" &&
+    params.category !== "Tv" &&
+    params.category !== "Accessories"
+  ) {
+    category = "";
     keyword = params.category;
-    // console.log("1234");
-  }else{
+    console.log("1234");
+  } else {
     category = params.category;
   }
 
@@ -26,26 +32,25 @@ const Products = (props) => {
   let [price, setPrice] = useState([0, 250000]);
   let [ratings, setRatings] = useState(0);
 
-  
   const priceFilterHandler = (e) => {
     let pricesString = e.target.id.split(",");
     setPrice([Number(pricesString[0]), Number(pricesString[1])]);
   };
 
-  const RatingHandler = (e) =>{
+  const RatingHandler = (e) => {
     console.log(e.target.id);
     setRatings(Number(e.target.id));
-  }
+  };
 
   const clearFilters = (e) => {
     setCurrentPage(1);
     setPrice([0, 250000]);
     setRatings(0);
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   useEffect(() => {
-    dispatch(productActions(keyword , currentPage, price, category, ratings));
+    dispatch(productActions(keyword, currentPage, price, category, ratings));
   }, [dispatch, keyword, currentPage, price, ratings, category]);
   const { products } = useSelector((state) => state.product);
 
@@ -59,16 +64,28 @@ const Products = (props) => {
           </div>
           <div className="category">
             <div className="categoryName">Price</div>
-            <div className="clear" onClick={clearFilters}>Clear all</div>
+            <div className="clear" onClick={clearFilters}>
+              Clear all
+            </div>
           </div>
           <div>
             <div className="custom">
-                <form>
-                    <label className="fontSize">From : </label><input type="number" id="lo" />
-                    <label className="fontSize">To : </label><input type="number" id="hi"/> <br></br>
-                </form>
+              <form>
+                <label className="fontSize">From : </label>
+                <input type="number" id="lo" />
+                <label className="fontSize">To : </label>
+                <input type="number" id="hi" /> <br></br>
+              </form>
             </div>
-            <p style={{marginLeft: "8em", marginTop:"1em", fontSize: "1.6rem"}}>or</p>
+            <p
+              style={{
+                marginLeft: "8em",
+                marginTop: "1em",
+                fontSize: "1.6rem",
+              }}
+            >
+              or
+            </p>
             <input
               className="inputRadio"
               type="radio"
@@ -225,16 +242,19 @@ const Products = (props) => {
             }}
           >
             {products.map((i) => (
-              <Link style={{textDecoration:'none', color:'black'}} to={`/product/${i._id}`}>
-              <ProductCard
-                name={i.name}
-                price={i.price}
-                id={i._id}
-                key={i._id}
-                images = {i.images}
-                rating = {i.ratings}
-                reviews = {i.numOfReviews}
-              />
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to={`/product/${i._id}`}
+              >
+                <ProductCard
+                  name={i.name}
+                  price={i.price}
+                  id={i._id}
+                  key={i._id}
+                  images={i.images}
+                  rating={i.ratings}
+                  reviews={i.numOfReviews}
+                />
               </Link>
             ))}
           </div>
