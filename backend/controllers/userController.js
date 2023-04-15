@@ -99,7 +99,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
       message: `Email sent to ${user.email} successfully`,
     });
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
 
