@@ -5,6 +5,8 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const cloudinary = require("cloudinary");
+const client = require("../utils/Redis")
+
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
@@ -155,13 +157,22 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
 // Get User Detail
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
-  console.log(req);
-  const user = await User.findById(req.user.id);
-  // console.log(user);
-  res.status(200).json({
-    success: true,
-    user,
-  });
+  const cachedData = await client.get(req.user.id);
+  if (cachedData) {
+		res.status(200).json({
+      success: true,
+      user: JSON.parse(cachedData),
+    });
+	}
+  else{
+    const user = await User.findById(req.user.id);
+    // console.log(user);
+    client.set(req.user.id, JSON.stringify(user));
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  }
 });
 
 // update User password
