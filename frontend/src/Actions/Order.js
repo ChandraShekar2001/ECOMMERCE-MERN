@@ -72,13 +72,9 @@ export const updateOrder = (id, status) => async (dispatch) => {
   try {
     dispatch({ type: "updateOrderRequest" });
     const url = `/admin/order/${id}`;
-    const { data } = await axios.put(url, {status}, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-        withCredentials: true,
-    });
-    console.log(data);
+    // console.log(url);
+    const { data } = await axios.put(url, {status}, config);
+    // console.log(data);
     dispatch({
       type: "updateOrderSuccess",
     });
