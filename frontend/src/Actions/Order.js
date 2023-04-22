@@ -71,7 +71,7 @@ export const updateOrder = (id, status) => async (dispatch) => {
   console.log(status, id);
   try {
     dispatch({ type: "updateOrderRequest" });
-    const url = `/order/${id}`;
+    const url = `/admin/order/${id}`;
     const { data } = await axios.put(url, {status}, {
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +95,7 @@ export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: "deleteOrderRequest" });
     // console.log(id);
-    const url = `/order/${id}`;
+    const url = `/admin/order/${id}`;
     const { data } = await axios.delete(url, config);
     // console.log(data);
     dispatch({
