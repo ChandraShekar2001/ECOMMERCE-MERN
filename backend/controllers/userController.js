@@ -213,14 +213,20 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   // console.log('1');
   // console.log(newUserData);
 
-  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+  let user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
   });
+
   // console.log(user);
   const users=await User.find()
+  user = await User.findById(req.user.id);
   // console.log(users);
+  const cachedData = await client.get(req.user.id);
+  if(cachedData){
+    client.set(req.user.id, JSON.stringify(user))
+  }
   res.status(200).json({
     success: true,
     user,

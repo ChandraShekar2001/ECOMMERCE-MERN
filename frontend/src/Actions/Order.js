@@ -72,9 +72,7 @@ export const updateOrder = (id, status) => async (dispatch) => {
   try {
     dispatch({ type: "updateOrderRequest" });
     const url = `/admin/order/${id}`;
-    // console.log(url);
     const { data } = await axios.put(url, {status}, config);
-    // console.log(data);
     dispatch({
       type: "updateOrderSuccess",
     });
@@ -90,10 +88,8 @@ export const updateOrder = (id, status) => async (dispatch) => {
 export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: "deleteOrderRequest" });
-    // console.log(id);
     const url = `/admin/order/${id}`;
     const { data } = await axios.delete(url, config);
-    // console.log(data);
     dispatch({
       type: "deleteOrderSuccess",
       payload: data.orders,
