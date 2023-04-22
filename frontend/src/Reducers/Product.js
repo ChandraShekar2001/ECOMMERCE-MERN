@@ -12,7 +12,7 @@ const initialState={
     isCreated: false,
     isDeleted: false,
     success: false,
-    product: [],
+    product: null,
     isUpdated: false,
 
 }
