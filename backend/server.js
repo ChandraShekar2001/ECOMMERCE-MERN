@@ -22,8 +22,8 @@ cloudinary.config({
   api_key: '849122369237317',
   api_secret: 'NT40GIQv0rOxeTwX2Dd32lfya2o',
 });
-const PORT = 4000;
-const server = app.listen(PORT, () => {
+
+const server = app.listen(4000, () => {
   console.log(`Server is working on http://localhost: 4000`);
 });
 
